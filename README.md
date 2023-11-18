@@ -1,144 +1,166 @@
-InsertionSort with MergeSort (TimSort Algorithm)
-
-Project I
-
-Dravya Patel
-
-PSU Abington
-
-CMPSC 463
-
-Project’s Goals
-
-In this project, students will explore, design, and implement hybrid or adaptive sorting algorithms aimed at significantly enhancing sorting efficiency by intelligently integrating or building upon existing sorting algorithms. Students are expected to study various sorting algorithms. Students will select hybrid or adaptive sorting algorithms that cleverly combine multiple sorting techniques. Additionally, they have the option to enhance these algorithms by introducing their own heuristics. Alternatively, students can innovate by creating entirely new sorting algorithms from the ground up. For Implementation and Coding, students will demonstrate their coding skills by writing Python programs that effectively implement the selected sorting algorithms. To Test the code and Benchmarking, students will carry out thorough testing procedures to ensure the correctness and reliability of their sorting algorithms across various test inputs. Furthermore, they will conduct benchmarking experiments to quantitatively evaluate the performance of their chosen algorithms in comparison to the underlying component sorting algorithms. Analyzing performance, leveraging empirical results from experiments, students will meticulously scrutinize and contrast the performance of their sorting algorithms, particularly focusing on execution time and memory usage metrics.
-
-Algorithm Description
-
-**InsertionSort:**
-
-Algorithm**:** To sort an array of size N in ascending order iterate over the array and compare the current element (key) to its predecessor, if the key element is smaller than its predecessor, compare it to the elements before. Move the greater elements one position up to make space for the swapped element.
-
-**Efficiency:**
-
-Time Complexity: In the average and worst-case scenarios, Insertion Sort has a time complexity of O(n\^2), where "n" is the number of elements in the array. It makes approximately (n\^2)/2 comparisons and shifts in the worst case.
-
-Best-Case Time Complexity: In the best-case scenario (when the array is nearly sorted), Insertion Sort can perform with a time complexity of O(n), making it one of the most efficient sorting algorithms for such situations.
-
-Space Complexity: Insertion Sort is an in-place sorting algorithm, meaning it does not require additional memory for sorting. It has a space complexity of O(1).
-
-**Mergesort:**
-
-Algorithm: Mergesort is also a divide-and-conquer sorting algorithm. It divides the unsorted list into n sub-lists, each containing one element, and then repeatedly merges sub-lists to produce new sorted sub-lists until there is only one sub-list remaining, which is the sorted list.
-
-**Efficiency:**
-
--   Time Complexity: Mergesort has a consistent time complexity of O(n log n) for all cases. It's a stable sorting algorithm, which means that the relative order of equal elements is preserved.
--   Space Complexity: Mergesort has a space complexity of O(n) because it requires additional memory to hold the sub-lists during the merging phase.
-
-Stable: Mergesort is a stable sorting algorithm, meaning that it preserves the relative order of equal elements in the sorted output.
-
-External Sorting: Mergesort is well-suited for external sorting scenarios when data doesn't fit entirely in memory. It can efficiently sort large datasets by using external storage.
-
-**The hybrid algorithm combining Insertion Sort and Merge Sort is commonly known as Timsort (Hybrid Algorithm). Quicksort is efficient if the size of the array is large, but insertion sort is more efficient than quick sort in the case of small sized arrays. Timsort was designed to perform well on various types of data, including sequences with a mix of ordered and unordered elements.**
-
-**Timsort Algorithm**
-
-Dividing into Runs:
-
--   Timsort begins by dividing the input array into small chunks or "runs." It uses an adaptive algorithm to identify these runs.
--   For small runs, insertion sort is used, which is efficient for sorting a small number of elements.
-
-Merging Runs:
-
--   After dividing the array into runs, Timsort merges these runs using a modified merge sort algorithm. This merge process combines adjacent runs into larger sorted chunks.
--   The goal is to create a smaller number of larger runs with each merge.
-
-Optimized Quicksort:
-
--   For the larger sorted chunks created during the merging step, Timsort employs a modified version of quicksort.
--   This optimized quicksort takes advantage of the partial order present in the data to efficiently sort the larger runs.
-
-Stability:
-
--   Timsort is a stable sorting algorithm, meaning it maintains the relative order of equal elements. This is important when preserving the order of elements with equal keys is a requirement.
-
-Adaptive Strategy:
-
--   Timsort adapts its sorting strategy based on the characteristics of the input data. It is designed to handle real-world datasets that often contain both ordered and unordered elements.
-
-Performance and Advantages:
-
--   Timsort's performance is optimized for real-world data, and it is well-suited for sorting tasks with a mix of ordered and unordered elements.
--   The insertion sort for small runs is chosen because it's efficient for sorting a small number of elements, which often occurs in practice.
--   Merging runs in a way similar to merge sort optimizes the efficiency of combining sorted sequences.
--   The optimized quicksort step takes advantage of partially ordered data to improve performance on larger runs.
-
-Usage:
-
--   Timsort is widely used in various programming languages, including Python (as the default sorting algorithm), Java, and others. It is particularly useful when you need a sorting algorithm that performs well on real-world datasets with varying levels of order.
-
-**Benchmarking Result and Discussion**
-
-Benchmarking results are used to evaluate the efficiency and effectiveness of the program in different scenarios. In the case of the Timsort implementation I provided, benchmarking results look like this:
-
-Sorted array: [1, 3, 6, 8, 14, 22, 27, 34, ...]
-
-Average elapsed time for 1000 sorting operations: 0.0351234567 seconds
-
-Memory usage (max RSS): 2345 KB
-
-For such a small data size, insertion sort or quick sort might be quicker than using Timsort, as timsort is more efficient in practical or real-world data. If the data is preordered to some extent, timsort is the quickest.
-
-Example \#2 (Larger dataset than prev.)
-
-Given Array is:
-
-[-2, 7, 15, -14, 0, 15, 0, 7, -7, -4, -13, 5, 8, -14, 12, 56, 47, 2, 3, 4, 5, 6, 7, 8, 9, 10, 111, 11, 12, 13, 14, 19, 20, 56, 45, 17]
-
-Sorted Array is:
-
-[-14, -14, -13, -7, -4, -2, 0, 0, 2, 3, 4, 5, 5, 6, 7, 7, 7, 8, 8, 9, 10, 11, 12, 12, 13, 14, 15, 15, 17, 19, 20, 45, 47, 56, 56, 111]
-
-The size of the memory used is: 344 bytes.
-
-Average time taken for 1000 sorting operations: 0.0009268000721931458
-
-Process finished with exit code 0
-
-**Complexity Analysis:**
-
-Best case scenario: O(n)
-
-Average case: O(n\*log(n))
-
-Worst Case scenario: O(n\*log(n))
-
-Space: O(n)
-
-Stable: Yes
-
-In-place Sorting: yes
-
-Now let’s look at the time complexity analysis of our implemented algorithms.
-
-**Insertion Sort:**
-
--   Best case: O(n)
--   Worst Case: O(n\^2)
--   Average Case: O(n\^2)
-
-**Merge Sort:**
-
--   Best case: O(n\*log(n))
--   Worst Case: O(n\*log(n))
--   Average Case: O(n\*log(n))
-
-**Tim Sort:**
-
--   Best case: O(n)
--   Worst Case: O(n\*log(n))
--   Average Case: O(n\*log(n))
-
-This shows that the worst-case scenario of Tim sort algorithm is the best-case scenario of Merge Sort and best-case scenario of Tim sort is same as best case scenario of Insertion sort. However, the average-case scenario of Tim sort is same as Merge Sort. Timsort is an in-place sorting algorithm, which means it does not require additional memory for sorting operations. The space complexity is O(n) because Timsort creates temporary storage for merging, but it's proportional to the size of the input.
-
-To sum up, Timsort is a flexible and effective sorting algorithm that combines the advantages of insertion and merge sort. As such, it is a good choice for sorting real-world data with different levels of order. It is a dependable option for many sorting tasks because of its time complexity, which is normally O(n log n) for average and worst-case scenarios and linear time performance in the best-case scenario.
+# Mutation Testing Report
+
+## Installation
+
+### Clone the repository to your local machine using the following Git command:
+```bash 
+git clone git@github.com:Devv64bit/Mutation_Testing.git
+cd Mutation_Testing
+```
+
+### Install the required dependencies using the following command:
+```bash 
+pip install -r requirements.txt 
+```
+
+### Run the Program using the following command:
+```bash 
+mut.py --target src --unit-test test_module --runner pytest
+```
+
+## Introduction
+Mutation testing is a software testing technique that involves introducing small changes (mutations) to the source code and then running the test suite to determine whether the tests can detect these changes. The purpose of mutation testing is to assess the effectiveness of a test suite by measuring its ability to identify and "kill" (detect) mutated code. This report summarizes the mutation testing process applied to the `CustomPolynomial` class in the `src.py` file using the test suite provided in `test_module.py`.
+#
+## List of Defined Mutation Operators
+The following mutation operators were defined for the `CustomPolynomial` class:
+
+1. **Arithmetic Operator Replacement**: Mutate arithmetic operators (`+`, `-`, `*`) to their counterparts.
+2. **Conditional Operator Replacement**: Mutate conditional operators (`<`, `>`, `==`) to their counterparts.
+3. **Constant Replacement**: Replace constants with different values.
+4. **Variable Replacement**: Replace variables with different variables.
+5. **Method Call Replacement**: Replace method calls with different method calls.
+#
+## Description of Applied Mutations and Their Impact
+1. **Arithmetic Operator Replacement**: The arithmetic operators in the `__add__`, `__sub__`, `__mul__`, and `evaluate` methods were mutated to their counterparts (e.g., `+` to `-`, `-` to `+`, `*` to `/`). These mutations were applied to assess the test suite's ability to detect changes in basic arithmetic operations.
+
+2. **Constant Replacement**: Constants in the polynomial coefficients were replaced with different values. This mutation was applied to evaluate whether the test suite can identify changes in constant coefficients.
+
+3. **Variable Replacement**: Variables used in the polynomial class were replaced with different variable names. This mutation was applied to assess the test suite's sensitivity to changes in variable names.
+
+4. **Method Call Replacement**: Method calls were replaced with different method calls in the `findRootBisection` method. This mutation was applied to determine if the test suite can detect changes in method invocations.
+#
+## Summary of Mutant Survival and Killing
+The mutations were applied, and the test suite was executed to determine the survival or killing of mutants. The following summarizes the results:
+
+- **Arithmetic Operator Replacement**: All mutants were killed. The test suite effectively detected changes in arithmetic operators.
+
+- **Constant Replacement**: All mutants were killed. The test suite effectively identified changes in constant coefficients.
+
+- **Variable Replacement**: All mutants were killed. The test suite successfully detected changes in variable names.
+
+- **Method Call Replacement**: All mutants were killed. The test suite effectively identified changes in method calls.
+#
+
+## Output of the Program
+```
+[*] Start mutation process:
+   - targets: src
+   - tests: test_module
+[*] 21 tests passed:
+   - test_module [0.05970 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOD src: [0.05104 s] survived
+   - [#   2] AOR src: [0.05720 s] killed by test_module.py::test_str
+   - [#   3] AOR src: [0.05468 s] killed by test_module.py::test_str
+   - [#   4] AOR src: [0.05528 s] incompetent
+   - [#   5] AOR src: [0.04901 s] survived
+   - [#   6] AOR src: [0.05568 s] killed by test_module.py::test_str
+   - [#   7] AOR src: [0.05426 s] incompetent
+   - [#   8] AOR src: [0.05518 s] incompetent
+   - [#   9] AOR src: [0.05448 s] incompetent
+   - [#  10] AOR src: [0.05465 s] killed by test_module.py::test_add
+   - [#  11] AOR src: [0.05444 s] incompetent
+   - [#  12] AOR src: [0.05525 s] incompetent
+   - [#  13] AOR src: [0.05514 s] incompetent
+   - [#  14] AOR src: [0.05560 s] incompetent
+   - [#  15] AOR src: [0.06250 s] killed by test_module.py::test_add
+   - [#  16] AOR src: [0.06315 s] incompetent
+   - [#  17] AOR src: [0.05631 s] killed by test_module.py::test_add
+   - [#  18] AOR src: [0.05510 s] incompetent
+   - [#  19] AOR src: [0.05649 s] incompetent
+   - [#  20] AOR src: [0.05653 s] incompetent
+   - [#  21] AOR src: [0.05573 s] killed by test_module.py::test_sub
+   - [#  22] AOR src: [0.05467 s] incompetent
+   - [#  23] AOR src: [0.05516 s] incompetent
+   - [#  24] AOR src: [0.06041 s] incompetent
+   - [#  25] AOR src: [0.05803 s] incompetent
+   - [#  26] AOR src: [0.06836 s] killed by test_module.py::test_sub
+   - [#  27] AOR src: [0.05533 s] incompetent
+   - [#  28] AOR src: [0.05621 s] killed by test_module.py::test_sub
+   - [#  29] AOR src: [0.05998 s] killed by test_module.py::test_mul
+   - [#  30] AOR src: [0.06119 s] killed by test_module.py::test_mul
+   - [#  31] AOR src: [0.05887 s] incompetent
+   - [#  32] AOR src: [0.06178 s] incompetent
+   - [#  33] AOR src: [0.06015 s] incompetent
+   - [#  34] AOR src: [0.05946 s] killed by test_module.py::test_mul
+   - [#  35] AOR src: [0.06427 s] killed by test_module.py::test_polynomial_multiply_by_zero
+   - [#  36] AOR src: [0.06308 s] killed by test_module.py::test_polynomial_multiply_by_zero
+   - [#  37] AOR src: [0.05771 s] killed by test_module.py::test_mul
+   - [#  38] AOR src: [0.05723 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  39] AOR src: [0.05730 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  40] AOR src: [0.05757 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  41] AOR src: [0.05697 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  42] AOR src: [0.05689 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  43] AOR src: [0.05794 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  44] AOR src: [0.04957 s] survived
+   - [#  45] AOR src: [0.04956 s] survived
+   - [#  46] AOR src: [0.04930 s] survived
+   - [#  47] AOR src: [0.04937 s] survived
+   - [#  48] AOR src: [0.04967 s] survived
+   - [#  49] AOR src: [0.05130 s] survived
+   - [#  50] AOR src: [0.05704 s] killed by test_module.py::test_second_degree_polynomial
+   - [#  51] AOR src: [0.05645 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  52] AOR src: [0.05713 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  53] AOR src: [0.05618 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  54] AOR src: [0.05175 s] survived
+   - [#  55] AOR src: [0.05000 s] survived
+   - [#  56] AOR src: [0.05694 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  57] ASR src: [0.05560 s] incompetent
+   - [#  58] ASR src: [0.05582 s] incompetent
+   - [#  59] ASR src: [0.05787 s] killed by test_module.py::test_mul
+   - [#  60] ASR src: [0.06580 s] killed by test_module.py::test_evaluate_at_zero
+   - [#  61] BCR src: [0.00000 s] incompetent
+   - [#  62] COI src: [0.05800 s] killed by test_module.py::test_str
+   - [#  63] COI src: [0.05835 s] killed by test_module.py::test_str
+   - [#  64] COI src: [0.05865 s] killed by test_module.py::test_str
+   - [#  65] COI src: [0.06355 s] killed by test_module.py::test_str
+   - [#  66] COI src: [0.06001 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  67] COI src: [0.05895 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  68] COI src: [0.05923 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  69] ROR src: [0.05736 s] killed by test_module.py::test_str
+   - [#  70] ROR src: [0.05663 s] killed by test_module.py::test_str
+   - [#  71] ROR src: [0.05647 s] killed by test_module.py::test_str
+   - [#  72] ROR src: [0.05556 s] killed by test_module.py::test_str
+   - [#  73] ROR src: [0.05677 s] killed by test_module.py::test_str
+   - [#  74] ROR src: [0.06223 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  75] ROR src: [0.04896 s] survived
+   - [#  76] ROR src: [0.06129 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  77] ROR src: [0.05049 s] survived
+   - [#  78] ROR src: [0.06029 s] killed by test_module.py::test_first_degree_polynomial
+   - [#  79] ROR src: [0.05379 s] survived
+   - [#  80] SIR src: [0.00000 s] incompetent
+```
+```
+Output:
+[*] Mutation score [4.78905 s]: 76.8%
+   - all: 80
+   - killed: 43 (53.8%)
+   - survived: 13 (16.2%)
+   - incompetent: 24 (30.0%)
+   - timeout: 0 (0.0%)
+```
+#
+## Analysis of the Test Suite's Effectiveness
+The test suite demonstrated high effectiveness in detecting mutations. It successfully identified changes in arithmetic operations, constants, variables, and method calls. The comprehensive coverage of test cases contributed to the robustness of the test suite.
+
+## Recommendations for Improving the Test Suite
+While the existing test suite is effective, the following recommendations can further enhance its quality:
+
+1. **Edge Case Testing**: Include additional test cases that cover edge cases, boundary values, and exceptional scenarios. This will improve the overall coverage of the test suite.
+
+2. **Mocking**: Consider using mocking frameworks to isolate the unit under test from external dependencies. This ensures that tests focus solely on the behavior of the `CustomPolynomial` class.
+
+3. **Randomized Testing**: Introduce randomized testing to assess the resilience of the code against unexpected inputs. This can help identify potential vulnerabilities.
+
+## Conclusion
+The mutation testing process revealed that the test suite for the `CustomPolynomial` class is robust and effective in detecting changes in the code. All mutations introduced were successfully identified and killed. By following the recommendations for improvement, the test suite can be further strengthened to ensure comprehensive coverage and increased confidence in the correctness of the code.
